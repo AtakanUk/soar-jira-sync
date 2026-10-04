@@ -1,0 +1,16 @@
+[Unit]
+Description=SOAR Jira Sync Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=syncsvc
+WorkingDirectory=/opt/soar-jira-sync
+EnvironmentFile=/opt/soar-jira-sync/.env
+ExecStart=/opt/soar-jira-sync/.venv/bin/python app.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
